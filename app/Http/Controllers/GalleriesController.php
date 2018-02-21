@@ -14,7 +14,13 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        return Gallery::all();
+        $term = request()->input('term');
+        if ($term) {
+            return Gallery::search($term);
+        } else {
+            return Gallery::all();
+        }
+
     }
 
     /**
