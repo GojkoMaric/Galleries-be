@@ -41,7 +41,8 @@ class GalleriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //MovieRequest
+        return Gallery::create($request->all());
     }
 
     /**
@@ -52,7 +53,7 @@ class GalleriesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Gallery::findOrFail($id);
     }
 
     /**
@@ -75,7 +76,10 @@ class GalleriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gallery = Gallery::findOrFail($id);
+        $gallery->update($request->all());
+        return $gallery;
+
     }
 
     /**
@@ -86,6 +90,6 @@ class GalleriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Gallery::destroy($id);
     }
 }
