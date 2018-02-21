@@ -14,12 +14,14 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        $term = request()->input('term');
-        if ($term) {
-            return Gallery::search($term);
-        } else {
-            return Gallery::all();
-        }
+        return Gallery::getAllGalleries();
+        // $term = request()->input('term');
+        // if ($term) {
+        //     return Gallery::search($term);
+        // } else {
+        //     return Gallery::getUsers();
+        //     // ->with('pictures');
+        // }
 
     }
 
@@ -53,7 +55,7 @@ class GalleriesController extends Controller
      */
     public function show($id)
     {
-        return Gallery::findOrFail($id);
+        return Gallery::with(['user'])->find($id);
     }
 
     /**
