@@ -20,5 +20,6 @@ $factory->define(App\Gallery::class, function (Faker $faker) {
         'description' => $faker->text(140),
         'images_url' => $faker->imageUrl(),
         'user_id' => $faker->numberBetween(1,10),
+        // 'created_at' => $faker->date(),
     ];
 });
