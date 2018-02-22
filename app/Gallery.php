@@ -32,6 +32,12 @@ class Gallery extends Model
         // ->orWhere('user->first_name', 'LIKE', '%'.$term.'%')
     }
 
+    public function picture(){
+        return $this->hasMany(Picture::class);
+    }
 
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
   
 }
