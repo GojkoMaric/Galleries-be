@@ -13,9 +13,9 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Comment::class, function (Faker $faker) {
+$factory->define(App\Picture::class, function (Faker $faker) {
     return [
-        'content' => $faker->text(60),
-        'user_id' => $faker->numberBetween(1,20),
+        'images_url' => $faker->imageUrl(),
+        'user_id' => $faker->numberBetween(1,10),
     ];
 });

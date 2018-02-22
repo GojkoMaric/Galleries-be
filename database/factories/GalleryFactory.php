@@ -13,12 +13,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Gallery::class, function (Faker $faker) {
     return [
         //??
         'name' => $faker->title,
-        'description' => $faker->text,
-        'images_url' => $faker->text,
-        'user_id' => $faker->random(),
+        'description' => $faker->text(100),
+        'images_url' => $faker->imageUrl(),
+        'user_id' => $faker->numberBetween(1,10),
     ];
 });
