@@ -9,7 +9,7 @@ class Comment extends Model
     public $timestamps = false;
 
     public function gallery(){
-        return $this->belongsTo(Gallery::class);
+        return $this->belongsTo('App\Gallery', 'gallery_id', 'id');
     }
     
     public function user(){

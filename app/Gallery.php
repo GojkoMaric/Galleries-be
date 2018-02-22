@@ -16,7 +16,8 @@ class Gallery extends Model
 
 
     public static function getAllGalleries(){
-        return self::with('user')->with('picture')->get();
+        return self::with(['user','picture', 'comments'])->get();
+        // ->join('comment', 'gallery.comment_id', '=', 'comment.id')
     }
 
     public function user(){
@@ -25,8 +26,8 @@ class Gallery extends Model
 
     public static function search($term)
     {
-        return self::with('user')
-        ->with('picture')
+        return self::with(['user','picture', 'comments'])
+        // ->with('picture')
         ->where('name', 'LIKE', '%'.$term.'%')
         ->orWhere('description', 'LIKE', '%'.$term.'%')
         ->get();
@@ -37,7 +38,7 @@ class Gallery extends Model
         return $this->hasMany(Picture::class);
     }
 
-    public function comment(){
+    public function comments(){
         return $this->hasMany(Comment::class);
     }
   

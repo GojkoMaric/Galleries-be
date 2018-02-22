@@ -24,3 +24,10 @@ Route::middleware('jwt')->get('galleries/{id}', 'GalleriesController@show');
 Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
 Route::middleware('jwt')->put('galleries/{id}', 'GalleriesController@update');
 Route::middleware('jwt')->delete('galleries/{id}', 'GalleriesController@destroy');
+
+Route::get('authors/{id}', 'GalleriesController@showUserId');
+
+Route::middleware('jwt')->get('comments', 'CommentsController@index');
+Route::middleware('jwt')->post('comments', 'CommentsController@store');
+
+
