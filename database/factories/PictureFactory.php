@@ -16,6 +16,6 @@ use Faker\Generator as Faker;
 $factory->define(App\Picture::class, function (Faker $faker) {
     return [
         'images_url' => $faker->imageUrl(),
-        'user_id' => $faker->numberBetween(1,10),
+        'gallery_id' => $faker->numberBetween(1,10),
     ];
 });

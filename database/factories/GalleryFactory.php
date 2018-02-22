@@ -16,8 +16,8 @@ use Faker\Generator as Faker;
 $factory->define(App\Gallery::class, function (Faker $faker) {
     return [
         //??
-        'name' => $faker->title,
-        'description' => $faker->text(100),
+        'name' => $faker->text(20),
+        'description' => $faker->text(140),
         'images_url' => $faker->imageUrl(),
         'user_id' => $faker->numberBetween(1,10),
     ];
