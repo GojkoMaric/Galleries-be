@@ -25,7 +25,11 @@ class Gallery extends Model
 
     public static function search($term)
     {
-        return self::where('name', 'LIKE', '%'.$term.'%')->get();
+        return self::with('user')
+        ->where('name', 'LIKE', '%'.$term.'%')
+        ->orWhere('description', 'LIKE', '%'.$term.'%')
+        ->get();
+        // ->orWhere('user->first_name', 'LIKE', '%'.$term.'%')
     }
 
 
