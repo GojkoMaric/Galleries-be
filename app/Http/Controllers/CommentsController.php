@@ -13,10 +13,21 @@ class CommentsController extends Controller
         return Comment::all();
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return Comment::create($request->all());
+        $comment = Comment::create([
+			'content' => $request['content'],
+			'gallery_id' => $request['gallery_id'],
+			'user_id' => $request['user_id']
+		]);
+		return Comment::with('user')->where('gallery_id', $comment['gallery_id'])->get();
     }
+    
+    public function show($id)
+    {
+        return Comment::where('gallery_id', $id)->with('user')->get();
+    }
+
     
 
 }

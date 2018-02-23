@@ -17,6 +17,7 @@ $factory->define(App\Comment::class, function (Faker $faker) {
     return [
         'content' => $faker->text(120),
         'user_id' => $faker->numberBetween(1,10),
-        'gallery_id' => $faker->numberBetween(1,10)
+        'gallery_id' => $faker->numberBetween(1,30),
+        'created_at' => $faker->date(),
     ];
 });
