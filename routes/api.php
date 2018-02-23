@@ -25,11 +25,11 @@ Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
 Route::middleware('jwt')->put('galleries/{id}', 'GalleriesController@update');
 Route::middleware('jwt')->delete('galleries/{id}', 'GalleriesController@destroy');
 
-Route::get('authors/{id}', 'GalleriesController@showUserId');
+Route::middleware('jwt')->get('authors/{id}', 'GalleriesController@showUserId');
 
-// Route::middleware('jwt')->get('comments', 'CommentsController@index');
-Route::post('comments', 'CommentsController@store');
-Route::get('comments/{id}', 'CommentsController@show');
+Route::middleware('jwt')->post('comments', 'CommentsController@store');
+Route::middleware('jwt')->get('comments/{id}', 'CommentsController@show');
+Route::middleware('jwt')->delete('comments/{id}', 'CommentsController@destroy');
 
 
 

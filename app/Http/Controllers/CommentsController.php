@@ -28,6 +28,12 @@ class CommentsController extends Controller
         return Comment::where('gallery_id', $id)->with('user')->get();
     }
 
-    
+    public function destroy($id)
+    {   
+        $destroyComment = Comment::destroy($id);
+        return Comment::with('user')->where('gallery_id', $id)->get();
+
+
+    }
 
 }

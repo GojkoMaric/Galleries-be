@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gallery;
 use App\User;
+use App\Picture;
 
 class GalleriesController extends Controller
 {
@@ -44,7 +45,21 @@ class GalleriesController extends Controller
     public function store(Request $request)
     {
         //MovieRequest
-        return Gallery::create($request->all());
+        // return Gallery::create($request->all());
+
+        $gallery = Gallery::create([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'images_url' => $request['images_url'],
+            'user_id' => $request['user_id'],
+            'created_at' => $request['created_at']
+        ]);
+        $image_url= Picture::create([
+            'images_url' => $request['images_url'],
+            'gallery_id' => $gallery->id
+        ]);
+        return Gallery::with('user')->where('user_id', $gallery['user_id'])->get();
+		// return Gallery::with('user')->where('gallery_id', $gallery['gallery_id'])->get();
     }
 
     /**
@@ -97,6 +112,7 @@ class GalleriesController extends Controller
      */
     public function destroy($id)
     {
-        Gallery::destroy($id);
+        $destroyGallery = Gallery::destroy($id);
+        return Gallery::with('user')->where('id', $id)->get();
     }
 }
