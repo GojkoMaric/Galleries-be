@@ -16,12 +16,12 @@ class GalleriesController extends Controller
      */
     public function index()
     {
-        
+        $take = request()->input('take');
         $term = request()->input('term');
         if ($term) {
-            return Gallery::search($term);
+            return Gallery::search($term)->take($take);
         } else {
-            return Gallery::getAllGalleries();
+            return Gallery::getAllGalleries()->take($take);
         }
 
     }
@@ -75,7 +75,9 @@ class GalleriesController extends Controller
 
     public function showUserId($id)
     {
-        return Gallery::where('user_id', $id)->with(['user', 'picture', 'comments'])->get();
+        $take = request()->input('take');
+        return Gallery::where('user_id', $id)
+        ->with(['user', 'picture', 'comments'])->take($take)->get();
     }
 
     /**
