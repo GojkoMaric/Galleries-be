@@ -50,9 +50,9 @@ class GalleriesController extends Controller
         $gallery = Gallery::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'images_url' => $request['images_url'],
+            // 'images_url' => $request['images_url'],
             'user_id' => $request['user_id'],
-            'created_at' => $request['created_at']
+            // 'created_at' => $request['created_at']
         ]);
         $image_url= Picture::create([
             'images_url' => $request['images_url'],
@@ -101,8 +101,17 @@ class GalleriesController extends Controller
     public function update(Request $request, $id)
     {
         $gallery = Gallery::findOrFail($id);
-        $gallery->update($request->all());
-        return $gallery;
+        $gallery->update([
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'user_id' => $request['user_id'],
+        ]);
+
+        $picture= Picture::create([
+            'images_url' => $request['images_url'],
+            'gallery_id' => $gallery->id
+        ]);
+        return Gallery::with('user')->where('user_id', $gallery['user_id'])->get();
 
     }
 

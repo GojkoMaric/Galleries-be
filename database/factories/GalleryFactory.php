@@ -15,10 +15,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Gallery::class, function (Faker $faker) {
     return [
-        //??
         'name' => $faker->text(20),
         'description' => $faker->text(140),
-        'images_url' => $faker->imageUrl(),
+        // 'images_url' => $faker->imageUrl(),
         'user_id' => $faker->numberBetween(1,10),
         'created_at' => $faker->date(),
     ];
